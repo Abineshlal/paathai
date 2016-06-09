@@ -1,0 +1,7 @@
+.searchbar input[type='search'] {
+  background-image: url("../img/destination.svg");
+}
+
+.grade-selected {
+  color: #f44336;
+}

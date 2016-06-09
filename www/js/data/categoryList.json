@@ -1,0 +1,20 @@
+{
+	"category" : [
+		{
+			"title" : "Couple",
+			"icon"	: "img/couple.svg"
+		},
+		{
+			"title" : "Friends",
+			"icon"	: "img/friends.svg"
+		},
+		{
+			"title" : "Family",
+			"icon"	: "img/family.svg"
+		},
+		{
+			"title" : "Solo",
+			"icon"	: "img/solo.svg"
+		}
+	]
+}
