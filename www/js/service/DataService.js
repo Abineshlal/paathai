@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global console, Framework7, Paathai, $document*/
 
-Paathai.angular.factory('DataService', ['$document', '$http' , function ($document, $http) {
+Paathai.angular.factory('DataService', ['$document', '$http', '$cordovaGeolocation' , function ($document, $http, $cordovaGeolocation) {
   'use strict';
 
   var pub = {},
@@ -13,33 +13,24 @@ Paathai.angular.factory('DataService', ['$document', '$http' , function ($docume
     eventListeners[eventName].push(callback);
   };
 
-  pub.getApi = function() {
-    var key = {};
-    key.google = 'AIzaSyB_yiyBowVTazG6j-NQY70VhZKOwjtFNCg';
-    return key;
+  pub.getBasicData = function() {
+
+    // get geo location: lat and long
+    var posOptions = {timeout: 10000, enableHighAccuracy: true};
+    $cordovaGeolocation.getCurrentPosition(posOptions)
+      .then(function (position) {
+        //sessionStorage.setItem("lat", position.coords.latitude);
+        //sessionStorage.setItem("lng", position.coords.longitude);
+
+        //testing data
+        sessionStorage.setItem("lat", 11.0168);
+        sessionStorage.setItem("lng", 76.9558);
+      }, function(err) {
+        sessionStorage.setItem("lat", "");
+        sessionStorage.setItem("lng", "");
+      });
   };
 
-  pub.getCurrentLocationDetails = function(lat, long) {
-    /*var apiKey = $cookies.get('googleApi');
-    var apiUri = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key='+apiKey;
-    return $http.get(apiUri);*/
-  }
-  
-  /*pub.getCategories = function() {
-    var categories = {};
-
-    $http.get('js/data/categoryList.json').then(function(result) {
-      categories = result;
-      for(var callback = 0; callback < eventListeners.getCategories.length; callback++) {
-        eventListeners.getCategories[callback](categories);
-      }
-    }, function(err) {
-      console.error(err);
-      for(var callback = 0; callback < eventListeners.getCategories.length; callback++) {
-        eventListeners.getCategories[callback](categories);
-      }
-    });
-  }*/
  
   return pub;
 }]);

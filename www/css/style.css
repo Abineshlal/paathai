@@ -5,3 +5,7 @@
 .grade-selected {
   color: #f44336;
 }
+
+.pac-container {
+	z-index: 5000;
+}

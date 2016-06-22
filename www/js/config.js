@@ -7,7 +7,7 @@ var Paathai = {};
 Paathai.config = {
 };
 
-Paathai.angular = angular.module('Paathai', []);
+Paathai.angular = angular.module('Paathai', ['ngCordova']);
 
 Paathai.fw7 = {
   app : new Framework7({
