@@ -15,7 +15,13 @@ Paathai.fw7 = {
     material: true
   }),
   options : {
+    domCache: true //enable inline pages
   },
   views : []
 };
 
+Paathai.api = {
+	google: 'AIzaSyB_yiyBowVTazG6j-NQY70VhZKOwjtFNCg'
+};
+
+Paathai.travelMode = {};

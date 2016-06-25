@@ -23,12 +23,38 @@ Paathai.angular.factory('DataService', ['$document', '$http', '$cordovaGeolocati
         //sessionStorage.setItem("lng", position.coords.longitude);
 
         //testing data
-        sessionStorage.setItem("lat", 11.0168);
-        sessionStorage.setItem("lng", 76.9558);
+        sessionStorage.setItem("lat", 11.0028);
+        sessionStorage.setItem("lng", 77.0305);
       }, function(err) {
         sessionStorage.setItem("lat", "");
         sessionStorage.setItem("lng", "");
       });
+  };
+
+  pub.setMap = function(myLoc, place, directionsService, directionsDisplay) {
+    pub.myLoc = myLoc;
+    pub.place = place;
+    pub.directionsService = directionsService;
+    pub.directionsDisplay = directionsDisplay;
+  };
+
+  pub.renderMap = function(travel_mode) {
+    var myLoc = pub.myLoc;
+    var place = pub.place;
+    var directionsService = pub.directionsService;
+    var directionsDisplay = pub.directionsDisplay;
+
+    directionsService.route({
+                  origin: pub.myLoc,
+                  destination: {'placeId': place.place_id},
+                  travelMode: travel_mode
+                }, function(response, status) {
+                  if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                  } else {
+                    window.alert('Directions request failed due to ' + status);
+                  }
+                });
   };
 
  
